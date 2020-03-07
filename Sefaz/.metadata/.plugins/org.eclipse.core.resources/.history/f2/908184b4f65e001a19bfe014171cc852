@@ -1,0 +1,95 @@
+package Funcionário;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class tela_de_acesso extends JFrame {
+
+	private JPanel tfUsuario;
+	private JTextField textField;
+	private JPasswordField pfSenha;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					tela_de_acesso frame = new tela_de_acesso();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public tela_de_acesso() {
+		setTitle("Tela de acesso");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 449, 315);
+		tfUsuario = new JPanel();
+		tfUsuario.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(tfUsuario);
+		tfUsuario.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(5, 5, 424, 10);
+		tfUsuario.add(panel);
+		
+		JLabel lblNewLabel = new JLabel("Usuario\r\n");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel.setForeground(new Color(0, 0, 0));
+		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblNewLabel.setBounds(80, 21, 74, 40);
+		tfUsuario.add(lblNewLabel);
+		
+		JLabel lblSenha = new JLabel("Senha");
+		lblSenha.setHorizontalAlignment(SwingConstants.LEFT);
+		lblSenha.setForeground(Color.BLACK);
+		lblSenha.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblSenha.setBounds(80, 119, 63, 40);
+		tfUsuario.add(lblSenha);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textField.setBounds(10, 72, 212, 36);
+		tfUsuario.add(textField);
+		textField.setColumns(10);
+		
+		pfSenha = new JPasswordField();
+		pfSenha.setFont(new Font("Tahoma", Font.BOLD, 16));
+		pfSenha.setBounds(10, 170, 212, 34);
+		tfUsuario.add(pfSenha);
+		
+		JButton btnNewButton = new JButton("Entrar");
+		btnNewButton.setBackground(Color.BLUE);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnNewButton.setBounds(10, 227, 212, 38);
+		tfUsuario.add(btnNewButton);
+	}
+}

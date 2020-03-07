@@ -1,0 +1,80 @@
+package Funcionário;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+
+public class tela_de_acesso extends JFrame {
+
+	private JPanel tfUsuario;
+	private JTextField textField;
+	private JPasswordField pfSenha;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					tela_de_acesso frame = new tela_de_acesso();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public tela_de_acesso() {
+		setTitle("Tela de acesso");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		tfUsuario = new JPanel();
+		tfUsuario.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(tfUsuario);
+		tfUsuario.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(5, 5, 424, 10);
+		tfUsuario.add(panel);
+		
+		JLabel lblNewLabel = new JLabel("Usuario\r\n");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setForeground(new Color(0, 0, 0));
+		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblNewLabel.setBounds(5, 11, 109, 40);
+		tfUsuario.add(lblNewLabel);
+		
+		JLabel lblSenha = new JLabel("Senha");
+		lblSenha.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSenha.setForeground(Color.BLACK);
+		lblSenha.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblSenha.setBounds(5, 62, 109, 40);
+		tfUsuario.add(lblSenha);
+		
+		textField = new JTextField();
+		textField.setBounds(117, 26, 86, 20);
+		tfUsuario.add(textField);
+		textField.setColumns(10);
+		
+		pfSenha = new JPasswordField();
+		pfSenha.setBounds(117, 75, 86, 20);
+		tfUsuario.add(pfSenha);
+	}
+}

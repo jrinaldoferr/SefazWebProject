@@ -1,0 +1,146 @@
+		package login;
+
+		import java.awt.BorderLayout;
+		import java.awt.EventQueue;
+
+		import javax.swing.JFrame;
+		import javax.swing.JPanel;
+		import javax.swing.border.EmptyBorder;
+		import javax.swing.JLabel;
+		import javax.swing.JOptionPane;
+
+		import java.awt.Color;
+		import javax.swing.SwingConstants;
+		import javax.swing.UIManager;
+		import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+		import login.Conexao;
+
+		import java.awt.Component;
+		import java.awt.Font;
+		import javax.swing.JTextField;
+		import javax.swing.JPasswordField;
+		import javax.swing.JButton;
+		import java.awt.event.ActionListener;
+		import java.sql.Connection;
+		import java.sql.PreparedStatement;
+		import java.sql.ResultSet;
+		import java.sql.SQLException;
+		import java.awt.event.ActionEvent;
+
+		@SuppressWarnings("unused")
+		public class Usuario extends JFrame {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -221219023809671294L;
+			private JPanel tfUsuario;
+			private JTextField textField;
+			private JPasswordField pfSenha;
+
+			/**
+			 * Launch the application.
+			 */
+			public static void main(String[] args) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							Usuario frame = new Usuario();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+
+			/**
+			 * Create the frame.
+			 */
+			public Usuario() {
+				setResizable(false);
+				setTitle("Usuario");
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				setBounds(100, 100, 449, 315);
+				tfUsuario = new JPanel();
+				tfUsuario.setBorder(new EmptyBorder(5, 5, 5, 5));
+				setContentPane(tfUsuario);
+				tfUsuario.setLayout(null);
+				
+				JPanel panel = new JPanel();
+				panel.setBounds(5, 5, 424, 10);
+				tfUsuario.add(panel);
+				
+				JLabel lblNewLabel = new JLabel("Usuario\r\n");
+				lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+				lblNewLabel.setForeground(new Color(0, 0, 0));
+				lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 16));
+				lblNewLabel.setBounds(80, 21, 74, 40);
+				tfUsuario.add(lblNewLabel);
+				
+				JLabel lblSenha = new JLabel("Senha");
+				lblSenha.setHorizontalAlignment(SwingConstants.LEFT);
+				lblSenha.setForeground(Color.BLACK);
+				lblSenha.setFont(new Font("Dialog", Font.BOLD, 16));
+				lblSenha.setBounds(80, 119, 63, 40);
+				tfUsuario.add(lblSenha);
+				
+				textField = new JTextField();
+				textField.setFont(new Font("Tahoma", Font.BOLD, 16));
+				textField.setBounds(10, 72, 212, 36);
+				tfUsuario.add(textField);
+				textField.setColumns(10);
+				
+				pfSenha = new JPasswordField();
+				pfSenha.setFont(new Font("Tahoma", Font.BOLD, 16));
+				pfSenha.setBounds(10, 170, 212, 34);
+				tfUsuario.add(pfSenha);
+				
+				JButton btnNewButton = new JButton("Entrar");
+				btnNewButton.setBackground(Color.BLUE);
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						
+						try {
+							Connection con = Conexao.faz_Conexao();
+							
+							String sql = "select * from usuario where nome=? and senha=?";
+							
+							PreparedStatement stmt = con.prepareStatement(sql);
+							
+							stmt.setString(1, tfUsuario.getToolTipText());
+							stmt.setString(2, new String(pfSenha.getPassword()));
+							
+							ResultSet rs = stmt.executeQuery();
+							
+							if(rs.next()){
+								
+								Tela_de_cadastro exibir = new Tela_de_cadastro();
+								exibir.setVisible(true);
+								
+								setVisible(false);								
+								
+							}
+							else
+							{
+								
+								JOptionPane.showMessageDialog(null,"Esse usuario não existe");
+							}
+							
+							stmt.close();
+							con.close();
+							
+						} catch (SQLException e) {		
+							e.printStackTrace();
+						}
+					}
+				});
+				btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
+				btnNewButton.setBounds(10, 227, 212, 38);
+				tfUsuario.add(btnNewButton);
+			
+			}		
+
+	}
+

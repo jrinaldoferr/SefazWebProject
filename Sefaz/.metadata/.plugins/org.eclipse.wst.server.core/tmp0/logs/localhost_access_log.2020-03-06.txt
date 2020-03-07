@@ -1,0 +1,2 @@
+127.0.0.1 - - [06/Mar/2020:02:27:58 -0300] "GET / HTTP/1.1" 404 721
+0:0:0:0:0:0:0:1 - - [06/Mar/2020:02:27:58 -0300] "GET /SefazWebProject/WEB-INF/classes/login/Conexao.java HTTP/1.1" 404 694
